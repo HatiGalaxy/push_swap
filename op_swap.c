@@ -18,7 +18,7 @@ void ft_swap(t_stack **stack, char *op)
     *stack = second;
 
     if (*op != '\0')
-        write(STDOUT_FILENO, op, 3); // "sa\n" veya "sb\n"
+        write(1, op, 3); // "sa\n" veya "sb\n"
 }
 
 // 2. ft_do_ss (ss)
@@ -26,5 +26,5 @@ void ft_do_ss(t_stack **a, t_stack **b)
 {
     ft_swap(a, ""); 
     ft_swap(b, ""); 
-    write(STDOUT_FILENO, "ss\n", 3);
+    write(1, "ss\n", 3);
 }

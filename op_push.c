@@ -15,5 +15,5 @@ void ft_push(t_stack **src, t_stack **dest, char *op)
     node_to_push->next = *dest;
     *dest = node_to_push;
 
-    write(STDOUT_FILENO, op, 3); // "pa\n" veya "pb\n"
+    write(1, op, 3); // "pa\n" veya "pb\n"
 }

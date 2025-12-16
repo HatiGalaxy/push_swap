@@ -21,7 +21,7 @@ void ft_rotate(t_stack **stack, char *op)
     last->next = first;
 
     if (*op != '\0')
-        write(STDOUT_FILENO, op, 3); // "ra\n" veya "rb\n"
+        write(1, op, 3); // "ra\n" veya "rb\n"
 }
 
 // 2. ft_do_rr (rr)
@@ -29,5 +29,5 @@ void ft_do_rr(t_stack **a, t_stack **b)
 {
     ft_rotate(a, ""); 
     ft_rotate(b, ""); 
-    write(STDOUT_FILENO, "rr\n", 3);
+    write(1, "rr\n", 3);
 }

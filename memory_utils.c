@@ -4,8 +4,8 @@
 // 1. Hata Çıkışı
 void    ft_error(void)
 {
-    write(STDERR_FILENO, "Error\n", 6);
-    exit(EXIT_FAILURE);
+    write(2, "Error\n", 6);
+    exit(1);
 }
 
 // 2. Yığını Temizleme
