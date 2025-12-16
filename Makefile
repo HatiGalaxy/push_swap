@@ -1,27 +1,49 @@
+# Makefile
+
+# Proje Adı (Konu gereği 'push_swap')
 NAME = push_swap
 
-CC = cc
+# Derleme için zorunlu flag'ler
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = push_swap.c \
-	utils/utils_atoi.c utils/utils_list.c utils/utils_free.c utils/utils_check.c \
-	operations/swap.c operations/push.c operations/rotate.c operations/reverse_rotate.c \
-	indexing/indexing.c \
-	algorithms/radix.c
+# Tüm C kaynak dosyaları
+SRCS = \
+	push_swap.c \
+	memory_utils.c \
+	check_arg.c \
+	split_utils.c \
+	stack_init.c \
+	index_sort.c \
+	op_swap.c \
+	op_push.c \
+	op_rotate.c \
+	op_rev_rotate.c \
+	sort.c \
+	sort_small.c
 
-OBJ = $(SRC:.c=.o)
+# Object dosyaları (.c -> .o)
+OBJS = $(SRCS:.c=.o)
 
+# Varsayılan kural: all'ı çağırır
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+# Ana derleme kuralı (relink yapmaz)
+# Tüm .o dosyalarını derler ve tek bir yürütülebilir dosya oluşturur
+$(NAME): $(OBJS)
+	cc $(CFLAGS) $(OBJS) -o $(NAME)
 
+# Object dosyası oluşturma kuralı
+# Her bir .c dosyasını ayrı ayrı derler
+%.o: %.c
+	cc $(CFLAGS) -c $< -o $@
+
+# Tüm object dosyalarını siler
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJS)
 
+# Tüm object dosyalarını ve yürütülebilir dosyayı (push_swap) siler
 fclean: clean
 	rm -f $(NAME)
 
+# Her şeyi siler ve yeniden derler (Norminette'in 're' kuralı)
 re: fclean all
-
-.PHONY: all clean fclean re
