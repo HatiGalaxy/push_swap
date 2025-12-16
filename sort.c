@@ -38,6 +38,15 @@ void ft_sort(t_stack **a, t_stack **b)
     int size;
 
     size = ft_get_stack_size(*a);
+    
+    // YENİ EKLEME: 2 elemanlı özel durum (MAX 25 SATIR KURALINA UYULDU)
+    if (size == 2)
+    {
+        if ((*a)->value > (*a)->next->value)
+            ft_swap(a, "sa\n");
+        return; // Sıralama tamam
+    }
+
     if (size <= 5)
         ft_sort_small(a, b);
     else
