@@ -1,44 +1,48 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   index_sort.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hergul <hergul@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/17 17:28:38 by hergul            #+#    #+#             */
+/*   Updated: 2025/12/17 21:00:22 by hergul           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-// MAX 5 FONKSIYON KURALINA UYGUN
-// 1. İndeks Atama
-void ft_assign_index(t_stack *a)
+void	ft_assign_index(t_stack *a)
 {
-    t_stack *current;
-    t_stack *min_val;
-    int     index;
-    int     size;
+	t_stack	*ptr1;
+	t_stack	*ptr2;
+	int				idx;
 
-    size = ft_get_stack_size(a);
-    index = 0;
-    while (index < size)
-    {
-        current = a;
-        min_val = NULL;
-        while (current)
-        {
-            if (current->index == 0)
-            {
-                if (min_val == NULL || current->value < min_val->value)
-                    min_val = current;
-            }
-            current = current->next;
-        }
-        if (min_val != NULL)
-            min_val->index = index++;
-    }
+	ptr1 = a;
+	while (ptr1)
+	{
+		idx = 0;
+		ptr2 = a;
+		while (ptr2)
+		{
+			if (ptr2->value < ptr1->value)
+				idx++;
+			ptr2 = ptr2->next;
+		}
+		ptr1->index = idx;
+		ptr1 = ptr1->next;
+	}
 }
 
-// 2. Sıralı Kontrol
-int ft_is_sorted(t_stack *a)
+int	ft_is_sorted(t_stack *a)
 {
-    if (a == NULL)
-        return (1);
-    while (a->next)
-    {
-        if (a->value > a->next->value)
-            return (0);
-        a = a->next;
-    }
-    return (1);
+	if (!a)
+		return (1);
+	while (a->next)
+	{
+		if (a->value > a->next->value)
+			return (0);
+		a = a->next;
+	}
+	return (1);
 }

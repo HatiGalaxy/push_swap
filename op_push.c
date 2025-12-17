@@ -1,19 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   op_push.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hergul <hergul@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/17 17:24:34 by hergul            #+#    #+#             */
+/*   Updated: 2025/12/17 17:25:57 by hergul           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-// MAX 5 FONKSIYON KURALINA UYGUN
-// 1. ft_push (pa, pb)
-void ft_push(t_stack **src, t_stack **dest, char *op)
+void	ft_push(t_stack **src, t_stack **dest, char *op)
 {
-    t_stack *node_to_push;
+	t_stack	*node_to_push;
 
-    if (!*src)
-        return ;
-
-    node_to_push = *src;
-    *src = (*src)->next;
-
-    node_to_push->next = *dest;
-    *dest = node_to_push;
-
-    write(1, op, 3); // "pa\n" veya "pb\n"
+	if (!*src)
+		return ;
+	node_to_push = *src;
+	*src = (*src)->next;
+	node_to_push->next = *dest;
+	*dest = node_to_push;
+	write(1, op, 3);
 }
